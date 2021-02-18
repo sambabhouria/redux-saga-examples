@@ -1,6 +1,7 @@
 import { fork, call, put, take, select } from 'redux-saga/effects';
 // import firebase from 'firebase';
 import { auth } from "../../firebase"
+// import firebase from "../../firebase"
 
 import {
   REQUEST_SIGN_IN, successSignIn, failureSignIn,

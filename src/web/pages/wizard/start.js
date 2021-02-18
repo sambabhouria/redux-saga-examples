@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { changeEmail } from '../actions';
+import { changeEmail } from '../../../core/wizard/actions';
 
 class Start extends Component {
   handleChange(e) {

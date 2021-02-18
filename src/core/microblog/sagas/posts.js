@@ -4,9 +4,9 @@ import {
   REQUEST_CREATE_POST, successCreatePost, failureCreatePost,
   syncAddedPost, syncRemovedPost
 } from '../actions';
-// import * as db from '../firebase';
-import { db } from "../../firebase"
+import firebase from "../../firebase"
 
+const db = firebase.ref("/users");
 function* runPostsCreate({ payload: { text } }) {
   const userId = yield select(state => state.appMicroblogReducer.user);
   const error = yield call(db.create, 'posts', id => {

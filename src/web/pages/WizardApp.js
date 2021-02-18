@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
  import { wizardForward, wizardBackward }from '../../core/wizard/actions';
-import * as pages from '../pages';
+import * as pages from '../pages/wizard';
 
 class Wizard extends Component {
   handleNext() {
