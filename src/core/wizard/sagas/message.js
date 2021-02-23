@@ -1,5 +1,5 @@
-import { put, call } from 'redux-saga/effects';
-import { takeEvery, delay } from 'redux-saga';
+import { takeEvery, put, call , delay} from 'redux-saga/effects';
+// import { takeEvery } from 'redux-saga';
 import { MESSAGE, messageAdd, messageRemove } from '../actions';
 
 const next = (() => {
@@ -15,5 +15,5 @@ function* handleMessage({ payload }) {
 }
 
 export default function* rootSaga() {
-  yield* takeEvery(MESSAGE, handleMessage);
+  yield takeEvery(MESSAGE, handleMessage);
 }

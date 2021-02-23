@@ -13,8 +13,9 @@ class Wizard extends Component {
   }
 
   render() {
+    console.log('this.props', this.props)
     const { message } = this.props;
-    const { page, canForward, canBackward } = this.props.app;
+    const { page, canForward, canBackward } = this.props.wizardapp;
     const Page = pages[page];
     return <div style={{ width: '600px' }}>
       <Page />

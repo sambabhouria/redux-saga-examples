@@ -6,6 +6,7 @@ import { appMicroblogReducer,usersReducer, postsReducer} from "../microblog";
 import { statsReducer,startStopappReducer} from "../startstop";
 import { takexapReducer} from "../takex";
 import {  throttleAppReducer, throttleReducer,} from "../throttle";
+import { wizardapp , message, data,} from "../wizard";
 
 const rootReducer = combineReducers({
     app: appReducer,
@@ -19,6 +20,9 @@ const rootReducer = combineReducers({
     takexapReducer,
     throttleAppReducer,
     throttleReducer,
+    wizardapp,
+    message,
+    data,
     form: reduxFormReducer,
 });
 

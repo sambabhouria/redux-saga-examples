@@ -5,11 +5,13 @@ import { changeEmail } from '../../../core/wizard/actions';
 class Start extends Component {
   handleChange(e) {
     const text = e.target.value;
+    console.log('input text ', text);
     this.props.dispatch(changeEmail(text));
   }
 
   render() {
     const { email } = this.props.data;
+    console.log('this.props.data', this.data);
     return (
       <div>
         <h2>Start</h2>
