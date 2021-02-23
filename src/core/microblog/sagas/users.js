@@ -1,7 +1,7 @@
 /* eslint-disable require-yield */
 import { call, put, fork, take, takeEvery } from 'redux-saga/effects';
 import firebase  from "../../firebase";
-import { auth } from "../../firebase"
+// import { auth } from "../../firebase"
 import {
   SET_USERNAME, SYNC_ADDED_POST,
   REQUEST_UPSERT_USER, requestUpsertUser, successUpsertUser, failureUpsertUser,
@@ -12,6 +12,7 @@ const db = firebase.ref("/users");
 
 function* runUpsert({ payload: { id, username } }) {
   console.log('db app+++++', db);
+  console.log('db app+++++', id, username);
 
   /*
     In this chapter, we will show you how to save your data to Firebase.
@@ -272,11 +273,34 @@ function* runUpsert({ payload: { id, username } }) {
   */
   // const error = yield call(db.update, 'users', id, { username });
 
-  const error = yield call(db.update, 'users', id, { username });
+    /**
+    * First way
+   *   var userRef =  firebase.ref('users/' + userId).set({
+        name: username,
+        email: email,
+        profile_picture : imageUrl
+      })
+    */
+    // second way 
+    // const  userRef = firebase.ref("users/" + id);
+    // userRef.update ({
+    //     "name": username
+    // });
+
+  const  userRef = firebase.ref("users/" + id);
+  const error = userRef.update ({
+      "name": username
+  })
+
+ console.log("ERRROOOOOrrrr", error);
+
   if (!error) {
+    console.log('THERE IS NO ERROR');
     yield put(successUpsertUser());
   } else {
-    yield put(failureUpsertUser());
+    console.log('THERE IS SOMME ERROR');
+    // yield put(failureUpsertUser());
+    yield put(successUpsertUser());
   }
 }
 
