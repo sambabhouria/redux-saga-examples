@@ -5,7 +5,7 @@ import {
 } from './actions';
 
 const initial = {
-    wizardapp: {
+  wizardapp: {
     page: 'start',
     canForward: false,
     canBackward: false,

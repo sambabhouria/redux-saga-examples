@@ -15,7 +15,7 @@ export function* handleNavigation() {
     yield take('*');
 
     // Do validation based on current page and update navigation buttons
-    const { page } = yield select(state => state.app);
+    const { page } = yield select(state => state.wizardapp);
     const buttons = { forward: false, backward: false };
     switch (page) {
       case 'start':
@@ -43,7 +43,7 @@ export function* handleNavigation() {
 export function* handleTransition() {
   while (true) {
     const { type, payload } = yield take([WIZARD_FORWARD, WIZARD_BACKWARD, WIZARD_ERROR]);
-    const { page } = yield select(state => state.app);
+    const { page } = yield select(state => state.wizardapp);
     switch (page) {
       case 'start':
         if (type === WIZARD_FORWARD) {

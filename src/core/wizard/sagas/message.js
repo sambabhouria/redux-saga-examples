@@ -10,7 +10,8 @@ const next = (() => {
 function* handleMessage({ payload }) {
   const id = next();
   yield put(messageAdd({ id, body: payload }));
-  yield call(delay, 5000);
+  // yield call(delay, 5000);
+  yield delay(5000);
   yield put(messageRemove(id));
 }
 

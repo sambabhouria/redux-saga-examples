@@ -28,6 +28,7 @@ class ThrottleApp extends Component {
 
   render() {
     const { throttleAppReducer, throttleReducer } = this.props;
+    console.log('this.props ===', this.props)
     return (
       <div>
         <h1>

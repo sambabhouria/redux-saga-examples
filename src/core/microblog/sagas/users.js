@@ -1,6 +1,7 @@
 /* eslint-disable require-yield */
 import { call, put, fork, take, takeEvery } from 'redux-saga/effects';
-import firebase from "../../firebase"
+import firebase  from "../../firebase";
+import { auth } from "../../firebase"
 import {
   SET_USERNAME, SYNC_ADDED_POST,
   REQUEST_UPSERT_USER, requestUpsertUser, successUpsertUser, failureUpsertUser,
@@ -10,7 +11,7 @@ import {
 const db = firebase.ref("/users");
 
 function* runUpsert({ payload: { id, username } }) {
-  console.log('db app', db);
+  console.log('db app+++++', db);
 
   /*
     In this chapter, we will show you how to save your data to Firebase.
@@ -202,35 +203,74 @@ function* runUpsert({ payload: { id, username } }) {
 
     Example
     Let us consider the following example.
+     var usersRef = firebase.ref("/users");
+
+    // The first query will order elements by name and filter from the player with the name Amanda.
+      // he console will log both users
+      usersRef.orderByChild("name").startAt("Amanda").on("child_added", function(data) {
+        console.log("Start at filter: " + data.val().name);
+      });
+
+    // The second query will log "Amanda" since we are ending query with this name.
+      usersRef.orderByChild("name").endAt("Amanda").on("child_added", function(data) {
+        console.log("End at filter: " + data.val().name);
+      });
+
+    // The third one will log "John" since we are searching for a user with that name.
+      usersRef.orderByChild("name").equalTo("John").on("child_added", function(data) {
+        console.log("Equal to filter: " + data.val().name);
+      });
+
+    // The fourth example is showing how we can combine filters with "age" value.
+    // Instead of string, we are passing the number inside the startAt() method since age is represented by a number value.
+      usersRef.orderByChild("age").startAt(20).on("child_added", function(data) {
+        console.log("Age filter: " + data.val().name);
+      });
+
+  // Firebase - Email Authentication
+  // In this chapter, we will show you how to use Firebase Email/Password authentication.
+
+  *******  Create user ************
+  To authenticate a user, we can use the createUserWithEmailAndPassword(email, password) method.
+  Example
+  Let us consider the following example.
+   console.log('just before crreating user account ***');
+
+  var email = "sambabahhouria@gmail.com";
+  var password = "mypassword";
+
+  auth.createUserWithEmailAndPassword(email, password).catch(function(error) {
+    console.log(error.code);
+    console.log(error.message);
+  });
+    console.log('JUST AFTER CREATING USER *******');
+
+ // ===> ************ Sign In================
+    The Sign-in process is almost the same. We are using the signInWithEmailAndPassword(email, password) to sign in the user
+    Example
+    Let us consider the following example.
+     var email = "sambabahhouria@gmail.com";
+    var password = "mypassword";
+
+    auth.signInWithEmailAndPassword(email, password).catch(function(error) {
+      console.log('JUST AFTER SINGIN Error  *******', error.code);
+      console.log('JUST AFTER SINGIN Message  *******', error.message);
+      });
+
+      console.log('JUST AFTER SINGIN   *******');
+
+      ***************Signout ***********
+
+
+    auth.signOut().then(function() {
+          console.log("Logged out!")
+      }, function(error) {
+          console.log(error.code);
+          console.log(error.message);
+      });
 
   */
   // const error = yield call(db.update, 'users', id, { username });
-
-
-  var usersRef = firebase.ref("/users");
-
-  // The first query will order elements by name and filter from the player with the name Amanda.
-  // he console will log both users
-  usersRef.orderByChild("name").startAt("Amanda").on("child_added", function(data) {
-    console.log("Start at filter: " + data.val().name);
-  });
-
-  // The second query will log "Amanda" since we are ending query with this name.
-  usersRef.orderByChild("name").endAt("Amanda").on("child_added", function(data) {
-    console.log("End at filter: " + data.val().name);
-  });
-
-  // The third one will log "John" since we are searching for a user with that name.
-  usersRef.orderByChild("name").equalTo("John").on("child_added", function(data) {
-    console.log("Equal to filter: " + data.val().name);
-  });
-
-  // The fourth example is showing how we can combine filters with "age" value.
-  // Instead of string, we are passing the number inside the startAt() method since age is represented by a number value.
-  usersRef.orderByChild("age").startAt(20).on("child_added", function(data) {
-    console.log("Age filter: " + data.val().name);
-  });
-
 
   const error = yield call(db.update, 'users', id, { username });
   if (!error) {

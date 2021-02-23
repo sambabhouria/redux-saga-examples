@@ -11,9 +11,9 @@ class Pay extends Component {
           Please choose payment method.
         </p>
         <ul>
-          <li>PayPal</li>
-          <li>Credit Card</li>
-          <li>Bitcoin</li>
+          <li key='key-1'>PayPal</li>
+          <li key='key-2'>Credit Card</li>
+          <li key='key-3'>Bitcoin</li>
         </ul>
       </div>
     );

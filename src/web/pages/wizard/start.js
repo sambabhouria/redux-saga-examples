@@ -16,7 +16,8 @@ class Start extends Component {
       <div>
         <h2>Start</h2>
         <div>
-          Email: <input type="text" value={email} onChange={this.handleChange.bind(this)} />
+         {/* (undefined || '') = '' becouse of uncontrolled input */}
+          Email: <input type="text" value={email || ''} onChange={this.handleChange.bind(this)} />
         </div>
         <dl>
           <dt>OK</dt>

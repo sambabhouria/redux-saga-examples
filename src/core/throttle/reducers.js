@@ -30,17 +30,17 @@ const handlers = {
       return { ...state, jobs: [ ...state.jobs, action.payload ] };
     },
     [RUN_JOB]: (state, action) => {
-      const job = throttleSelector.job(action.payload.id)({ throttle: state });
+      const job = throttleSelector.job(action.payload.id)({ throttleReducer: state });
       const newJob = { ...job, status: 'running' };
       return { ...state, jobs: swapJob(state.jobs, newJob) };
     },
     [SUCCESS_JOB]: (state, action) => {
-      const job = throttleSelector.job(action.payload.id)({ throttle: state });
+      const job = throttleSelector.job(action.payload.id)({ throttleReducer: state });
       const newJob = { ...job, status: 'success' };
       return { ...state, jobs: swapJob(state.jobs, newJob) };
     },
     [FAILURE_JOB]: (state, action) => {
-      const job = throttleSelector.job(action.payload.id)({ throttle: state });
+      const job = throttleSelector.job(action.payload.id)({ throttleReducer: state });
       const newJob = { ...job, status: 'failure' };
       return { ...state, jobs: swapJob(state.jobs, newJob) };
     },

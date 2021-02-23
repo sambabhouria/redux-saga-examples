@@ -21,8 +21,8 @@ class Wizard extends Component {
       <Page />
       <div style={{ color: 'red', fontWeight: 'bold', minHeight: '30px' }}>
         <ul>
-          {message.map(msg =>
-            <li>{msg.body}</li>
+          {message.map((msg, index) =>
+            <li key={index}>{msg.body}</li>
           )}
         </ul>
       </div>
